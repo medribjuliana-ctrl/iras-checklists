@@ -368,6 +368,3 @@ function SummarySection({ data: d, adherent }: { data: any; adherent: boolean })
     </div>
   );
 }
-
-const EPIS = ["Gorro", "Máscara", "Luva estéril", "Avental estéril manga longa", "Campo estéril da cabeça aos pés"];
-const EPIS_AUX = ["Higienizou as mãos", "Utilizou gorro", "Utilizou máscara"];

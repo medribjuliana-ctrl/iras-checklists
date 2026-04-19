@@ -61,7 +61,7 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: "Schema não encontrado" }, { status: 404 });
   }
 
-  const schemaFields = schema.fields as any;
+  const schemaFields = JSON.parse(schema.fields as string);
   const isAdherent = calculateAdherence(body.responses, schemaFields.adherenceRules);
 
   // Verificar duplicata (syncId para offline)
@@ -82,7 +82,7 @@ export async function POST(req: NextRequest) {
       shift: body.shift,
       dayNumber: body.dayNumber,
       isAdherent,
-      responses: body.responses,
+      responses: JSON.stringify(body.responses),
       syncId: body.syncId,
     },
     include: {

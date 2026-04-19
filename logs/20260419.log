@@ -1,0 +1,15 @@
+{"event": "Log file: /Users/julianaribeiro/Projetos/bundle/iras-checklists/logs/20260419.log", "level": "info", "logger": "med_paper_assistant", "timestamp": "2026-04-19T23:04:00.054726Z"}
+{"event": "Initializing MedPaper Assistant MCP Server...", "level": "info", "logger": "med_paper_assistant", "timestamp": "2026-04-19T23:04:00.055498Z"}
+{"path": "/Users/julianaribeiro/Projetos/bundle/iras-checklists/.audit/tool-telemetry.yaml", "event": "tool_tracking_initialized", "level": "info", "timestamp": "2026-04-19T23:04:00.060249Z", "logger": "med_paper_assistant.interfaces.mcp.tools._shared.tool_logging"}
+{"event": "Registering project tools (incl. diagrams)...", "level": "info", "logger": "med_paper_assistant", "timestamp": "2026-04-19T23:04:00.067540Z"}
+{"event": "Registering reference tools...", "level": "info", "logger": "med_paper_assistant", "timestamp": "2026-04-19T23:04:00.096015Z"}
+{"event": "Registering draft tools...", "level": "info", "logger": "med_paper_assistant", "timestamp": "2026-04-19T23:04:00.149102Z"}
+{"event": "Registering validation tools...", "level": "info", "logger": "med_paper_assistant", "timestamp": "2026-04-19T23:04:00.202624Z"}
+{"event": "Registering analysis tools...", "level": "info", "logger": "med_paper_assistant", "timestamp": "2026-04-19T23:04:00.216653Z"}
+{"event": "Registering review tools (incl. pipeline gates)...", "level": "info", "logger": "med_paper_assistant", "timestamp": "2026-04-19T23:04:00.294544Z"}
+{"event": "Registering export tools...", "level": "info", "logger": "med_paper_assistant", "timestamp": "2026-04-19T23:04:00.320383Z"}
+{"event": "Registering prompts...", "level": "info", "logger": "med_paper_assistant", "timestamp": "2026-04-19T23:04:00.336285Z"}
+{"event": "Registering resources...", "level": "info", "logger": "med_paper_assistant", "timestamp": "2026-04-19T23:04:00.350630Z"}
+{"event": "MedPaper Assistant MCP Server initialized successfully!", "level": "info", "logger": "med_paper_assistant", "timestamp": "2026-04-19T23:04:00.354862Z"}
+{"event": "Using tool surface: compact", "level": "info", "logger": "med_paper_assistant", "timestamp": "2026-04-19T23:04:00.355689Z"}
+{"event": "Note: Use pubmed-search MCP for literature search.", "level": "info", "logger": "med_paper_assistant", "timestamp": "2026-04-19T23:04:00.356116Z"}

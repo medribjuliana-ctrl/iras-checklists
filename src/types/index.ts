@@ -1,18 +1,16 @@
-import { Role, DeviceType, FormType, Shift } from "@prisma/client";
-
 // ─── Session types ───
 export interface SessionUser {
   id: string;
   name: string;
   email: string;
-  role: Role;
+  role: string;
 }
 
 // ─── API types ───
 export interface CreateEntryPayload {
   schemaId: string;
   deviceId: string;
-  shift?: Shift;
+  shift?: string;
   dayNumber?: number;
   responses: Record<string, any>;
   syncId?: string; // UUID from client (offline)
@@ -20,7 +18,7 @@ export interface CreateEntryPayload {
 
 export interface CreateDevicePayload {
   patientId: string;
-  type: DeviceType;
+  type: string;
   unit: string;
   bed: string;
   insertionDate: string;
@@ -56,6 +54,3 @@ export interface SchemaFields {
   adherenceRules: any;
   requiresShift?: boolean;
 }
-
-// ─── Re-exports ───
-export { Role, DeviceType, FormType, Shift };
