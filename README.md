@@ -16,7 +16,11 @@ Se você está enfrentando erro **NOT_FOUND** (404), isso geralmente acontece po
    - Execute: `npm run db:push:prod` (para PostgreSQL)
    - Execute: `npm run db:seed` (para popular dados)
 
-3. **Build falhando no Vercel**
+3. **Diretório public ausente** ❌➡️✅ **RESOLVIDO**
+   - Criado diretório `public/` com `manifest.json`
+   - Arquivos estáticos necessários para PWA
+
+4. **Build falhando no Vercel**
    - Verifique os logs de build no Vercel
    - Certifique-se que `DATABASE_URL` está correta
 
