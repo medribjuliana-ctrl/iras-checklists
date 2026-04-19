@@ -5,6 +5,28 @@
 - ✅ Conta no Vercel (https://vercel.com)
 - ✅ Supabase PostgreSQL configurado
 
+## Configuração do Banco de Dados
+
+### Para Produção (PostgreSQL)
+O projeto usa dois schemas Prisma:
+- `prisma/schema.dev.prisma` - Para desenvolvimento local (SQLite)
+- `prisma/schema.prod.prisma` - Para produção (PostgreSQL com enums)
+
+### Configurar Banco de Produção
+1. Execute o comando de deploy do banco:
+   ```bash
+   npm run db:push:prod
+   ```
+   Este comando:
+   - Substitui temporariamente o schema por `schema.prod.prisma`
+   - Faz push para PostgreSQL
+   - Restaura o schema de desenvolvimento
+
+2. Execute o seed para popular dados iniciais:
+   ```bash
+   npm run db:seed
+   ```
+
 ## Variáveis de Ambiente Necessárias
 
 | Variável | Valor | Exemplo |

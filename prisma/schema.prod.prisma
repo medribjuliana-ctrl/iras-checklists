@@ -1,0 +1,154 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// ─── Enums ───
+
+enum Role {
+  NURSE
+  PHYSICIAN
+  ADMIN
+}
+
+enum DeviceStatus {
+  ACTIVE
+  REMOVED
+  INFECTED
+}
+
+enum DeviceType {
+  CVC
+  SVD
+  VM
+}
+
+// ─── Autenticação & Usuários ───
+
+model User {
+  id             String   @id @default(uuid())
+  name           String
+  email          String   @unique
+  passwordHash   String
+  role           Role     @default(NURSE)
+  coren          String?  // Registro profissional
+  crm            String?
+  crefito        String?
+  active         Boolean  @default(true)
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+
+  entries        ChecklistEntry[]
+  justifications Justification[]
+
+  @@map("users")
+}
+
+// ─── Pacientes ───
+
+model Patient {
+  id            String   @id @default(uuid())
+  name          String
+  medicalRecord String   @unique @map("medical_record") // Prontuário
+  birthDate     DateTime @map("birth_date")
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  devices       Device[]
+
+  @@map("patients")
+}
+
+// ─── Dispositivos ───
+
+model Device {
+  id             String       @id @default(uuid())
+  patientId      String       @map("patient_id")
+  type           DeviceType
+  status         DeviceStatus @default(ACTIVE)
+  unit           String       // Unidade (UTI, UCI, etc.)
+  bed            String       // Leito
+  insertionDate  DateTime     @map("insertion_date")
+  removalDate    DateTime?    @map("removal_date")
+
+  // CVC-specific
+  insertionSite  String?      @map("insertion_site")  // Local de inserção
+  laterality     String?      // Lateralidade
+  cvcType        String?      @map("cvc_type")        // Tipo do CVC
+
+  createdAt      DateTime     @default(now())
+  updatedAt      DateTime     @updatedAt
+
+  patient        Patient      @relation(fields: [patientId], references: [id])
+  entries        ChecklistEntry[]
+  justifications Justification[]
+
+  @@map("devices")
+}
+
+// ─── Schemas dos Checklists (configuráveis) ───
+
+model ChecklistSchema {
+  id          String   @id @default(uuid())
+  formType    String   @unique @map("form_type")
+  version     Int      @default(1)
+  name        String   // Ex: "CVC — Inserção"
+  description String?
+  fields       String    // JSON com a definição dos campos
+  active      Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  entries     ChecklistEntry[]
+
+  @@map("checklist_schemas")
+}
+
+// ─── Entradas dos Checklists ───
+
+model ChecklistEntry {
+  id            String    @id @default(uuid())
+  schemaId      String    @map("schema_id")
+  deviceId      String    @map("device_id")
+  userId        String    @map("user_id")
+  filledAt      DateTime  @default(now()) @map("filled_at")
+  shift         String?   // Apenas para PAV (diurno/noturno)
+  dayNumber     Int?      @map("day_number") // Dia de permanência (manutenção)
+  isAdherent    Boolean   @map("is_adherent") // Bundle aderido?
+  responses     String    // JSON com todas as respostas {fieldId: value}
+  syncId        String?   @unique @map("sync_id") // UUID gerado no cliente (offline)
+
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+
+  schema        ChecklistSchema @relation(fields: [schemaId], references: [id])
+  device        Device          @relation(fields: [deviceId], references: [id])
+  user          User            @relation(fields: [userId], references: [id])
+
+  @@index([deviceId, filledAt])
+  @@index([schemaId, filledAt])
+  @@map("checklist_entries")
+}
+
+// ─── Justificativas Médicas ───
+
+model Justification {
+  id            String   @id @default(uuid())
+  deviceId      String   @map("device_id")
+  userId        String   @map("user_id")  // Médico que justificou
+  dayNumber     Int      @map("day_number")
+  justification String
+  doctorName    String   @map("doctor_name")
+  doctorCrm     String   @map("doctor_crm")
+  createdAt     DateTime @default(now())
+
+  device        Device   @relation(fields: [deviceId], references: [id])
+  user          User     @relation(fields: [userId], references: [id])
+
+  @@unique([deviceId, dayNumber])
+  @@map("justifications")
+}

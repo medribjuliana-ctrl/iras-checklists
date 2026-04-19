@@ -12,6 +12,7 @@
     "db:migrate": "prisma migrate dev",
     "db:studio": "prisma studio",
     "db:seed": "tsx prisma/seed.ts",
+    "db:push:prod": "cp prisma/schema.prod.prisma prisma/schema.prisma && prisma db push && cp prisma/schema.dev.prisma prisma/schema.prisma",
     "postinstall": "prisma generate"
   },
   "dependencies": {

@@ -1,9 +1,14 @@
+// ─── Enums ───
+export type Role = "NURSE" | "PHYSICIAN" | "ADMIN";
+export type DeviceStatus = "ACTIVE" | "REMOVED" | "INFECTED";
+export type DeviceType = "CVC" | "SVD" | "VM";
+
 // ─── Session types ───
 export interface SessionUser {
   id: string;
   name: string;
   email: string;
-  role: string;
+  role: Role;
 }
 
 // ─── API types ───
@@ -18,7 +23,7 @@ export interface CreateEntryPayload {
 
 export interface CreateDevicePayload {
   patientId: string;
-  type: string;
+  type: DeviceType;
   unit: string;
   bed: string;
   insertionDate: string;
