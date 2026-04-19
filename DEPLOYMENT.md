@@ -5,6 +5,19 @@
 - ✅ Conta no Vercel (https://vercel.com)
 - ✅ Supabase PostgreSQL configurado
 
+## Arquivos Estáticos
+
+### Diretório Public
+O projeto requer um diretório `public/` na raiz com arquivos estáticos:
+
+- `manifest.json` - Configuração PWA (já criado)
+- Ícones do aplicativo (opcionais para funcionalidade básica)
+
+**Se receber erro "No Output Directory named 'public' found"**:
+1. Certifique-se que o diretório `public/` existe na raiz do projeto
+2. O arquivo `manifest.json` deve estar presente
+3. Faça commit e push das mudanças
+
 ## Configuração do Banco de Dados
 
 ### Para Produção (PostgreSQL)

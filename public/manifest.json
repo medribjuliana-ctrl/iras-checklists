@@ -1,0 +1,11 @@
+{
+  "name": "IRAS Checklists",
+  "short_name": "IRAS",
+  "description": "Checklists de prevenção de infecções relacionadas à assistência à saúde",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#0d7c5f",
+  "orientation": "portrait-primary",
+  "scope": "/"
+}
