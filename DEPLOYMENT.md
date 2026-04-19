@@ -7,16 +7,13 @@
 
 ## Arquivos Estáticos
 
-### Diretório Public
-O projeto requer um diretório `public/` na raiz com arquivos estáticos:
+### Diretório Public ✅
+O projeto tem um diretório `public/` na raiz com arquivos estáticos necessários:
 
-- `manifest.json` - Configuração PWA (já criado)
-- Ícones do aplicativo (opcionais para funcionalidade básica)
+- `manifest.json` - Configuração PWA
+- `icon-192.svg` e `icon-512.svg` - Ícones do aplicativo
 
-**Se receber erro "No Output Directory named 'public' found"**:
-1. Certifique-se que o diretório `public/` existe na raiz do projeto
-2. O arquivo `manifest.json` deve estar presente
-3. Faça commit e push das mudanças
+**Resolvido**: Erro "No Output Directory named 'public' found" foi corrigido removendo `outputDirectory` do `vercel.json`. O Vercel detecta automaticamente Next.js e não precisa dessa configuração manual.
 
 ## Configuração do Banco de Dados
 
