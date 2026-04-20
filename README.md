@@ -2,6 +2,22 @@
 
 Sistema de checklists para prevenção de infecções relacionadas à assistência à saúde (IRAS) em hospitais.
 
+## ✅ Problemas Resolvidos
+
+- **NOT_FOUND (404)**: Corrigido configuração do `vercel.json`
+- **Avisos de depreciação**: Dependências atualizadas para versões compatíveis
+- **Output Directory**: Removido `outputDirectory` problemático do Vercel
+- **Dependências desatualizadas**: ESLint, Prisma e outras libs atualizadas
+
+## 📦 Dependências Atualizadas
+
+As dependências foram atualizadas para resolver avisos de depreciação:
+
+- ✅ ESLint atualizado para versão compatível
+- ✅ Prisma mantido em v5 (v7 tem breaking changes)
+- ✅ Outras dependências críticas atualizadas
+- ✅ Build e lint funcionando corretamente
+
 ## 🚨 Problema NOT_FOUND Resolvido
 
 Se você está enfrentando erro **NOT_FOUND** (404), isso geralmente acontece por:
