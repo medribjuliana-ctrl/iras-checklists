@@ -1,8 +1,13 @@
 {
+  "version": 2,
   "framework": "nextjs",
   "buildCommand": "npm run build",
-  "outputDirectory": "public",
   "devCommand": "npm run dev",
+  "functions": {
+    "src/app/api/**/*.ts": {
+      "runtime": "@vercel/node"
+    }
+  },
   "env": {
     "DATABASE_URL": "@database_url",
     "NEXTAUTH_URL": "@nextauth_url",
